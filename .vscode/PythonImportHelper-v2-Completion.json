@@ -89,6 +89,22 @@
         "documentation": {}
     },
     {
+        "label": "post_save",
+        "importPath": "django.db.models.signals",
+        "description": "django.db.models.signals",
+        "isExtraImport": true,
+        "detail": "django.db.models.signals",
+        "documentation": {}
+    },
+    {
+        "label": "receiver",
+        "importPath": "django.dispatch",
+        "description": "django.dispatch",
+        "isExtraImport": true,
+        "detail": "django.dispatch",
+        "documentation": {}
+    },
+    {
         "label": "TestCase",
         "importPath": "django.test",
         "description": "django.test",
@@ -307,7 +323,16 @@
         "kind": 6,
         "importPath": "users.admin",
         "description": "users.admin",
-        "peekOfCode": "class UserAdmin(admin.ModelAdmin):\n    list_display = ('id', 'email', 'date_joined')\n    search_fields = ('email')\n    ordering = ('-date_joined',)",
+        "peekOfCode": "class UserAdmin(admin.ModelAdmin):\n    list_display = ('id', 'email', 'date_joined')\n    search_fields = ('email')\n    ordering = ('-date_joined',)\n@admin.register(Profile)\nclass ProfileAdmin(admin.ModelAdmin):  \n    list_display = ('user')",
+        "detail": "users.admin",
+        "documentation": {}
+    },
+    {
+        "label": "ProfileAdmin",
+        "kind": 6,
+        "importPath": "users.admin",
+        "description": "users.admin",
+        "peekOfCode": "class ProfileAdmin(admin.ModelAdmin):  \n    list_display = ('user')",
         "detail": "users.admin",
         "documentation": {}
     },
@@ -316,7 +341,7 @@
         "kind": 6,
         "importPath": "users.apps",
         "description": "users.apps",
-        "peekOfCode": "class UsersConfig(AppConfig):\n    default_auto_field = \"django.db.models.BigAutoField\"\n    name = \"users\"",
+        "peekOfCode": "class UsersConfig(AppConfig):\n    default_auto_field = \"django.db.models.BigAutoField\"\n    name = \"users\"\n    def ready(self):\n        import users.signal",
         "detail": "users.apps",
         "documentation": {}
     },
@@ -345,6 +370,15 @@
         "description": "users.models",
         "peekOfCode": "class Profile(models.Model):\n    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')\n    profile_picture = models.ImageField(blank=True, null=True)\n    def __str__(self):\n        return f'Profile of {self.user.email}'",
         "detail": "users.models",
+        "documentation": {}
+    },
+    {
+        "label": "create_or_update_user_profile",
+        "kind": 2,
+        "importPath": "users.signal",
+        "description": "users.signal",
+        "peekOfCode": "def create_or_update_user_profile(sender, instance, created, **kwargs):\n    \"\"\"\n    Automatically creates or updates the Profile when a User instance is saved.\n    \"\"\"\n    if created:\n        # Create the profile when the user is created\n        Profile.objects.create(user=instance)\n    else:\n        # Save the profile when the user is updated\n        instance.profile.save()",
+        "detail": "users.signal",
         "documentation": {}
     },
     {
