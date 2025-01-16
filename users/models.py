@@ -41,7 +41,7 @@ class CustomUserManager(BaseUserManager):
         
         return self.create_user(email, password, **extra_fields)
     
-      
+ # User model     
 class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True)
@@ -56,3 +56,12 @@ class User(AbstractUser):
     
     def __str__(self):
         return f'{self.first_name} {self.last_name} ({self.email})'
+    
+    
+# Profile model
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    profile_picture = models.ImageField(blank=True, null=True)
+    
+    def __str__(self):
+        return f'Profile of {self.user.email}'    

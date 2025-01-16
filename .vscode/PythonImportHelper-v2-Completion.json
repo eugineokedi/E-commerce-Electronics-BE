@@ -339,6 +339,15 @@
         "documentation": {}
     },
     {
+        "label": "Profile",
+        "kind": 6,
+        "importPath": "users.models",
+        "description": "users.models",
+        "peekOfCode": "class Profile(models.Model):\n    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')\n    profile_picture = models.ImageField(blank=True, null=True)\n    def __str__(self):\n        return f'Profile of {self.user.email}'",
+        "detail": "users.models",
+        "documentation": {}
+    },
+    {
         "label": "main",
         "kind": 2,
         "importPath": "manage",
