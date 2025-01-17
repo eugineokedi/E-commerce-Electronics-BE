@@ -6,10 +6,10 @@ class RegisterSerializer(serializers.ModelSerializer):
     last_name = serializers.CharField(max_length=100)
     email = serializers.EmailField(required=True)
     phone_number = serializers.CharField(max_length=30, required=False)
-    password = serializers.CharField(write_only=True, min_length=8)
+    password = serializers.CharField(write_only=True, max_length=30, min_length=8, required=False)
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', 'phone_number', 'password')
+        fields = ('id', 'first_name', 'last_name', 'email', 'phone_number', 'password')
         
         
     def validate_password(self, value):
@@ -43,7 +43,7 @@ class RegisterSerializer(serializers.ModelSerializer):
         
 class ResetPasswordSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(required=True)
-    password = serializers.CharField(write_only=True, min_length=8)
+    password = serializers.CharField(write_only=True, max_length=30, min_length=8, required=False)
     
     def validate_password(self, value):
         """
