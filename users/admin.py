@@ -5,12 +5,10 @@ from .models import User, Profile
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'email', 'date_joined')
-    search_fields = ('email')
-    ordering = ('-date_joined',)
+    list_display = ('id', 'email', 'date_joined',)
     
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):  
-    list_display = ('user')  
+    list_display = ('user',)  
   

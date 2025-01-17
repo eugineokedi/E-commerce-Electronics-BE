@@ -57,11 +57,37 @@
         "documentation": {}
     },
     {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
+        "label": "django.db.models.deletion",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "django.apps",
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "django.utils.timezone",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.utils.timezone",
+        "description": "django.utils.timezone",
+        "detail": "django.utils.timezone",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
         "documentation": {}
     },
     {
@@ -70,6 +96,22 @@
         "description": "django.db",
         "isExtraImport": true,
         "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "django.apps",
+        "description": "django.apps",
+        "isExtraImport": true,
+        "detail": "django.apps",
         "documentation": {}
     },
     {
@@ -89,7 +131,23 @@
         "documentation": {}
     },
     {
+        "label": "serializers",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
         "label": "post_save",
+        "importPath": "django.db.models.signals",
+        "description": "django.db.models.signals",
+        "isExtraImport": true,
+        "detail": "django.db.models.signals",
+        "documentation": {}
+    },
+    {
+        "label": "pre_save",
         "importPath": "django.db.models.signals",
         "description": "django.db.models.signals",
         "isExtraImport": true,
@@ -179,7 +237,7 @@
         "kind": 5,
         "importPath": "electronics.settings",
         "description": "electronics.settings",
-        "peekOfCode": "AUTH_USER_MODEL = 'users.User'\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n]",
+        "peekOfCode": "AUTH_USER_MODEL = 'users.User'\n# Application definition\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"django_cleanup.apps.CleanupConfig\",",
         "detail": "electronics.settings",
         "documentation": {}
     },
@@ -188,7 +246,7 @@
         "kind": 5,
         "importPath": "electronics.settings",
         "description": "electronics.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n]\nMIDDLEWARE = [\n    \"django.middleware.security.SecurityMiddleware\",",
+        "peekOfCode": "INSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    \"django_cleanup.apps.CleanupConfig\",\n    \"users\",\n    # Third party libraries",
         "detail": "electronics.settings",
         "documentation": {}
     },
@@ -319,11 +377,20 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "users.migrations.0001_initial",
+        "description": "users.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='User',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "detail": "users.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
         "label": "UserAdmin",
         "kind": 6,
         "importPath": "users.admin",
         "description": "users.admin",
-        "peekOfCode": "class UserAdmin(admin.ModelAdmin):\n    list_display = ('id', 'email', 'date_joined')\n    search_fields = ('email')\n    ordering = ('-date_joined',)\n@admin.register(Profile)\nclass ProfileAdmin(admin.ModelAdmin):  \n    list_display = ('user')",
+        "peekOfCode": "class UserAdmin(admin.ModelAdmin):\n    list_display = ('id', 'email', 'date_joined',)\n@admin.register(Profile)\nclass ProfileAdmin(admin.ModelAdmin):  \n    list_display = ('user',)",
         "detail": "users.admin",
         "documentation": {}
     },
@@ -332,7 +399,7 @@
         "kind": 6,
         "importPath": "users.admin",
         "description": "users.admin",
-        "peekOfCode": "class ProfileAdmin(admin.ModelAdmin):  \n    list_display = ('user')",
+        "peekOfCode": "class ProfileAdmin(admin.ModelAdmin):  \n    list_display = ('user',)",
         "detail": "users.admin",
         "documentation": {}
     },
@@ -359,7 +426,7 @@
         "kind": 6,
         "importPath": "users.models",
         "description": "users.models",
-        "peekOfCode": "class User(AbstractUser):\n    username = None\n    email = models.EmailField(unique=True)\n    phone_number = models.CharField(max_length=30, blank=True, null=True)\n    objects = CustomUserManager()\n    # Email as the unique identifier\n    USERNAME_FIELD = 'email'\n    REQUIRED_FIELDS = ['email']\n    def __str__(self):\n        return f'{self.first_name} {self.last_name} ({self.email})'",
+        "peekOfCode": "class User(AbstractUser):\n    username = None\n    email = models.EmailField(unique=True)\n    phone_number = models.CharField(max_length=30, blank=True, null=True)\n    objects = CustomUserManager()\n    # Email as the unique identifier\n    USERNAME_FIELD = 'email'\n    REQUIRED_FIELDS = []\n    def __str__(self):\n        return f'{self.first_name} {self.last_name} ({self.email})'",
         "detail": "users.models",
         "documentation": {}
     },
@@ -368,8 +435,26 @@
         "kind": 6,
         "importPath": "users.models",
         "description": "users.models",
-        "peekOfCode": "class Profile(models.Model):\n    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')\n    profile_picture = models.ImageField(blank=True, null=True)\n    def __str__(self):\n        return f'Profile of {self.user.email}'",
+        "peekOfCode": "class Profile(models.Model):\n    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')\n    profile_picture = models.ImageField(upload_to='profile_pics/',  blank=True, null=True)\n    # Custom profile picture cleanup\n    # def save(self, *args, **kwargs):\n    #     # Delete old profile picture if updating\n    #     if self.pk:\n    #         old_profile = Profile.objects.filter(pk=self.pk).first()\n    #         if old_profile and old_profile.profile_picture != self.profile_picture:\n    #             old_profile.profile_picture.delete(save=False)",
         "detail": "users.models",
+        "documentation": {}
+    },
+    {
+        "label": "RegisterSerializer",
+        "kind": 6,
+        "importPath": "users.serializers",
+        "description": "users.serializers",
+        "peekOfCode": "class RegisterSerializer(serializers.ModelSerializer):\n    first_name = serializers.CharField(max_length=100)\n    last_name = serializers.CharField(max_length=100)\n    email = serializers.EmailField(required=True)\n    phone_number = serializers.CharField(max_length=30, required=False)\n    password = serializers.CharField(write_only=True, min_length=8)\n    class Meta:\n        model = User\n        fields = ('first_name', 'last_name', 'email', 'phone_number', 'password')\n    def validate_password(self, value):",
+        "detail": "users.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ResetPasswordSerializer",
+        "kind": 6,
+        "importPath": "users.serializers",
+        "description": "users.serializers",
+        "peekOfCode": "class ResetPasswordSerializer(serializers.ModelSerializer):\n    email = serializers.EmailField(required=True)\n    password = serializers.CharField(write_only=True, min_length=8)\n    def validate_password(self, value):\n        \"\"\"\n        Validate and return the password\n        \"\"\" \n        if len(value) < 8:\n            raise ValueError(\"Password must be at least 8 characters long.\")\n        return value",
+        "detail": "users.serializers",
         "documentation": {}
     },
     {
