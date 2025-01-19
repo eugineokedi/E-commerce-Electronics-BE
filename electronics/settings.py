@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     
     # Apps
     "users",
+    "products",
     
     # Third party libraries
     "rest_framework",
